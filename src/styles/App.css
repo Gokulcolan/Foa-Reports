@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,28 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+/* Add this CSS to your main CSS file or a CSS module */
+
+
+.bgLogin {
+  background-image: url(../assets/images/loginbg.jpg);
+}
+
+.forgotPassword {
+  cursor: pointer;
+  color: black !important;
+  margin-top: 8px !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+.forgotPassword:hover {
+  color: #ff900a !important;
+} 
+
+.loginBtn {
+  background-color: #1e73be !important;
 }

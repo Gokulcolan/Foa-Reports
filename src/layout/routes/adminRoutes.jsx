@@ -2,10 +2,8 @@ import React from 'react'
 
 const AdminRoutes = () => {
   return (
-    <div>
-        <>hi</>
-    </div>
+    <div>AdminRoutes</div>
   )
 }
 
-export default AdminRoutes;
+export default AdminRoutes
