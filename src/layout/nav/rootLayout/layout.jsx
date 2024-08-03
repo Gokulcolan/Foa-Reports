@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { styled } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
+import React, {  useState } from "react";
+import { styled,  } from "@mui/material/styles";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { UsermenuItems } from "../../../utils/constants/menuItems";
 import ListIcon from "@mui/icons-material/List";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { UsermenuIconItems, UsermenuItems } from "../../../utils/constants/menuItems";
+import MuiDrawer from "@mui/material/Drawer";
 
 const drawerWidth = 280;
 
@@ -50,8 +50,8 @@ const Drawer = styled(MuiDrawer, {
 
 function MultipleList({ menuItems, openDrawer }) {
   const { name, path, id } = menuItems;
-  //   const { userRoleData={} } = useSelector(authSelector);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = React.useState(true);
+
   const navigate = useNavigate();
   let location = useLocation();
   const handleClick = (e) => {
@@ -80,36 +80,36 @@ function MultipleList({ menuItems, openDrawer }) {
           let isActive =
             location.pathname === path || location.pathname === child;
           return (
-            // userRoleData[id] ?"": (
-            <div key={index}>
-              <ListItemButton
-                component={Link}
-                to={path}
-                style={{
-                  backgroundColor: isActive ? "#00E785" : "",
-                  color: isActive ? "black" : "",
-                  margin: isActive && openDrawer ? "0px 18px 0px 0px" : "",
-                  // width:openDrawer?"" :"10px",
-                  borderRadius: isActive ? "10px" : "",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-                key={`${index}-item`}
-                className="nested-list"
-                sx={{
-                  "&:hover": {
-                    color: "#00E785",
-                  },
-                }}
-              >
-                <span style={{ margin: "9px" }}>{icon}</span>
-                <ListItemText
-                  primary={name}
-                  className={isActive ? "menuname" : "menunameIsActive"}
-                />
-              </ListItemButton>
-            </div>
-            // )
+            <>
+              <div key={index}>
+                <ListItemButton
+                  component={Link}
+                  to={path}
+                  style={{
+                    backgroundColor: isActive ? "#00E785" : "",
+                    color: isActive ? "black" : "",
+                    margin: isActive && openDrawer ? "0px 18px 0px 0px" : "",
+                    // width:openDrawer?"" :"10px",
+                    borderRadius: isActive ? "10px" : "",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                  key={`${index}-item`}
+                  className="nested-list"
+                  sx={{
+                    "&:hover": {
+                      color: "#00E785",
+                    },
+                  }}
+                >
+                  <span style={{ margin: "9px" }}>{icon}</span>
+                  <ListItemText
+                    primary={name}
+                    className={isActive ? "menuname" : "menunameIsActive"}
+                  />
+                </ListItemButton>
+              </div>
+            </>
           );
         })}
       </List>
@@ -120,29 +120,10 @@ function MultipleList({ menuItems, openDrawer }) {
 
 export const Layout = ({ openDrawer }) => {
   const [layoutData, setLayoutData] = useState([]);
-  //   const dispatch = useDispatch();
-  //   let sessionValue = sessionStorage.getItem("ur");
-  //   let userId = sessionStorage.getItem("UId");
-  //   useEffect(() => {
-  //     dispatch(RoleAuthApi(userId));
-  //   }, []);
 
-  //   useEffect(() => {
-  //     if (sessionValue == 1) {
-  //       setLayoutData(openDrawer ? UsermenuItems : UsermenuIconItems);
-  //     } else {
-  //       // setLayoutData(AdminMenuItems);
-  //       setLayoutData(openDrawer ? AdminMenuItems : AdminIconMenuItems);
-  //     }
-  //   }, [openDrawer, sessionValue]);
-
-  useEffect(() => {
-    // if (sessionValue == 1) {
-    //   setLayoutData(openDrawer ? UsermenuItems : UsermenuIconItems);
-    // } else {
-    // setLayoutData(AdminMenuItems);
-    setLayoutData(openDrawer ? UsermenuItems : UsermenuIconItems);
-  }, [openDrawer]);
+  React.useEffect(() => {
+    setLayoutData(UsermenuItems);
+  }, []);
 
   return (
     <>
@@ -154,7 +135,7 @@ export const Layout = ({ openDrawer }) => {
           open={openDrawer}
           style={{ width: openDrawer ? "" : "20px" }}
         >
-          <img src="" alt="logo" className="logo" style={{ width: "100%" }} />
+          <img src={""} className="logo" style={{ width: "100%" }} />
           <List>
             {layoutData.map((items, index) => {
               return items.isNested ? (

@@ -1,9 +1,9 @@
 import AdminRoutes from "./adminRoutes";
-import authRoutes from "./authRoutes";
 import UserRoutes from "./userRoutes";
+import AuthRoutes from "./authRoutes";
 
 const ROLES_ROUTES = {
-  0: authRoutes,
+  0: AuthRoutes,
   1: UserRoutes,
   2: AdminRoutes,
 };

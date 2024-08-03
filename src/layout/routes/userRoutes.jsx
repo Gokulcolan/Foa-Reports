@@ -1,29 +1,23 @@
-// import EditProfile from "../../components/EditProfile/editProfile";
-// import AddRoles from "../../components/Roles&Permissions/addRoles";
-// import NotFound from "../../pages/Auth/notFound/notFound";
+import Foa from "../../pages/User/Foa/index";
 
-import BarcodeDetails from "../../pages/User/BarcodeDetails";
-import Foa from "../../pages/User/Foa";
+import BarcodeDetails from "../../pages/User/BarcodeDetails/index";
 import RootLayout from "../nav/rootLayout";
 
 const UserRoutes = [
   {
-    path: "/dashboard",
+    path: "/userDashboard",
     element: <RootLayout />,
     children: [
-      { path:'foa', element: <Foa /> },
-      { path: "barcodeDetails", element: <BarcodeDetails /> },
-
+      {
+        path: "foa",
+        element: <Foa />,
+      },
+      {
+        path: "BarcodeDetails",
+        element: <BarcodeDetails />,
+      },
     ],
   },
-//   {
-//     path: "/payment",
-//     element: <Payment />,
-//   },
-//   {
-//     path:'/*',
-//     element:<NotFound/>
-//   }
 ];
 
 export default UserRoutes;

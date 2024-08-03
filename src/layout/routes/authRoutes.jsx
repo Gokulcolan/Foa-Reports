@@ -1,35 +1,23 @@
-import { lazy } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
+import ForgotPassword from "../../pages/Auth/ForgetPassword";
+import Login from "../../pages/Auth/Login";
 
+const AuthRoutes = [
+    {
+      path: "/",
+      element: <Outlet />,
+      children: [
+        {
+          path: "/",
+          element: <Login />,
+        },
+        {
+          path: "/forgot-password",
+          element: <ForgotPassword />,
+        },
+       
+      ],
+    },
+  ];
 
-
-const Login = lazy(() => import("../../pages/Auth/Login/index"));
-
-const authRoutes = [
-  {
-    path: "/",
-    element: (
-      <div>
-        <Outlet />
-      </div>
-    ),
-    children: [
-      {
-        path: "/",
-        element: <Login />,
-      },
-     
-    //   {
-    //     path: "/forgot",
-    //     element: <ForgotPassword />,
-    //   },
-     
-    //   {
-    //     path: "*",
-    //     element: <NotFound/>
-    //   },
-    ],
-  },
-];
-
-export default authRoutes;
+  export default AuthRoutes;

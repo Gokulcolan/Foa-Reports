@@ -1,9 +1,32 @@
-import React from 'react'
+import React from "react";
 
 const Foa = () => {
   return (
-    <div>Foa</div>
-  )
-}
+    <div style={{ color: "red" }}>
+      Foa Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
+      deserunt et at blanditiis, nemo debitis laboriosam rem eveniet dolorem
+      dolore laudantium. A repellendus dicta suscipit omnis provident quaerat
+      ipsa aut. Foa Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      Suscipit deserunt et at blanditiis, nemo debitis laboriosam rem eveniet
+      dolorem dolore laudantium. A repellendus dicta suscipit omnis provident
+      quaerat ipsa aut Foa Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Suscipit deserunt et at blanditiis, nemo debitis laboriosam rem
+      eveniet dolorem dolore laudantium. A repellendus dicta suscipit omnis
+      provident quaerat ipsa aut Foa Lorem ipsum dolor sit amet consectetur
+      adipisicing elit. Suscipit deserunt et at blanditiis, nemo debitis
+      laboriosam rem eveniet dolorem dolore laudantium. A repellendus dicta
+      suscipit omnis provident quaerat ipsa aut Foa Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. Suscipit deserunt et at blanditiis, nemo
+      debitis laboriosam rem eveniet dolorem dolore laudantium. A repellendus
+      dicta suscipit omnis provident quaerat ipsa aut Foa Lorem ipsum dolor sit
+      amet consectetur adipisicing elit. Suscipit deserunt et at blanditiis,
+      nemo debitis laboriosam rem eveniet dolorem dolore laudantium. A
+      repellendus dicta suscipit omnis provident quaerat ipsa aut Foa Lorem
+      ipsum dolor sit amet consectetur adipisicing elit. Suscipit deserunt et at
+      blanditiis, nemo debitis laboriosam rem eveniet dolorem dolore laudantium.
+      A repellendus dicta suscipit omnis provident quaerat ipsa aut
+    </div>
+  );
+};
 
-export default Foa
+export default Foa;
