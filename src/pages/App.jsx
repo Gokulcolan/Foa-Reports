@@ -1,9 +1,12 @@
 import { useRoutes } from "react-router-dom";
+import { getRoutes } from "../layout/routes";
 // import "../App.css";
-import { getRoutes } from "../layout/Routes/index";
 
 function App() {
-  const router = useRoutes(getRoutes(0));
+  const userRole =
+    typeof window !== "undefined" ? sessionStorage.getItem("ur") : null;
+  const routeType = userRole !== null ? userRole : 0;
+  const router = useRoutes(getRoutes(routeType));
   return <header className="App-header">{router}</header>;
 }
 

@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bgLogin {
+  background-image: url("../src/assets/images/loginbg.jpg");
+}
+
+.forgotPassword {
+  cursor: pointer;
+  color: black !important;
+  margin-top: 8px !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+.forgotPassword:hover {
+  color: #ff900a !important;
+} 
+
+.loginBtn {
+  background-color: #1e73be !important;
+}
+
+
+/* CommonTable.module.css */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}

@@ -41,8 +41,8 @@
 /* Add this CSS to your main CSS file or a CSS module */
 
 
-.bgLogin {
-  background-image: url(../assets/images/loginbg.jpg);
+/* .bgLogin {
+  background-image: url("../assets/images/loginbg.jpg");
 }
 
 .forgotPassword {
@@ -59,4 +59,4 @@
 
 .loginBtn {
   background-color: #1e73be !important;
-}
+} */

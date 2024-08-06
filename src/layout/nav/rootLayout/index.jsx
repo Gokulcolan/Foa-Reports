@@ -3,49 +3,32 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Outlet, useNavigate } from "react-router-dom";
 import { Avatar } from "@mui/material";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { ArrowBack } from "@mui/icons-material";
+import { Outlet, useNavigate } from "react-router-dom";
+import ProfileImg from "../../../assets/images/Ellipse 58.png";
 import { Layout } from "./layout";
-
+import { handleSesssionStorage } from "../../../utils/helperFunctions";
 const drawerWidth = 280;
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+
+const AppBar = styled(MuiAppBar)(({ theme }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+  marginLeft: drawerWidth,
+  width: `calc(100% - ${drawerWidth}px)`,
+  transition: theme.transitions.create(["width", "margin"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
   }),
 }));
 
 export default function RootLayout() {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  //setting adming and user routes
-
-  const [openDrawer, setOpenDrawer] = useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpenDrawer(!openDrawer);
-  };
-
-  const handleDrawerClose = () => {
-    setOpenDrawer(false);
-  };
-  //to show dropdown lists
 
   const handleProfileClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,55 +38,31 @@ export default function RootLayout() {
     setAnchorEl(null);
   };
 
-
   const handleLogOut = () => {
+    handleSesssionStorage("add", "ur", 0);
     navigate("/");
   };
-  console.log("anchourrrr", anchorEl);
 
   return (
     <Box sx={{ display: "flex", position: "relative" }}>
-      {/* <CssBaseline /> */}
       <AppBar
         position="fixed"
-        open={openDrawer}
-        sx={{ backgroundColor: "white" }}
+        sx={{
+          backgroundColor: "#eef3f6",
+          boxShadow:
+            "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;",
+        }}
       >
         <Toolbar>
-          <IconButton
-            color="black"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              position: "relative",
-              color: "black",
-            }}
-            className="backarrow"
-          >
-            {openDrawer ? (
-              <MenuIcon style={{ color: "black" }} />
-            ) : (
-              <ArrowBack
-                className="backarrow"
-                style={{
-                  color: "black",
-                  marginLeft: "60px",
-                  textDecoration: "none",
-                }}
-              />
-            )}
-          </IconButton>
           <Avatar
             alt="Profile Logo"
-            src={""} // Replace with the path to your profile logo image
+            src={ProfileImg} // Replace with the path to your profile logo image
             sx={{
               width: "60px",
               height: "60px",
               marginLeft: "auto",
               cursor: "pointer",
-            }} // Adjust the margin as needed
+            }}
             onClick={handleProfileClick}
           />
           <Menu
@@ -121,7 +80,6 @@ export default function RootLayout() {
             sx={{ borderRadius: "10px" }}
             open={anchorEl}
           >
-          
             <MenuItem
               onClick={handleLogOut}
               sx={{
@@ -131,26 +89,19 @@ export default function RootLayout() {
                 },
               }}
             >
-             
               Sign Out
             </MenuItem>
-            {/* Add more menu items as needed */}
           </Menu>
         </Toolbar>
       </AppBar>
-      {/* <Layout /> */}
-      {/* <div style={{position:"relative"}}> */}
-      <Layout openDrawer={openDrawer} />
-      <span
-        className={
-          openDrawer
-            ? "outletcontainer opendrawer"
-            : "outletcontainer closedrawer"
-        }
+      <Layout />
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
       >
+        <Toolbar />
         <Outlet />
-      </span>
-
+      </Box>
     </Box>
   );
 }

@@ -1,9 +1,19 @@
-import React from 'react'
 
-const AdminRoutes = () => {
-  return (
-    <div>AdminRoutes</div>
-  )
-}
+import FoaAdmin from "../../pages/Admin/Foa";
+import RootLayout from "../nav/rootLayout";
 
-export default AdminRoutes
+const AdminRoutes = [
+  {
+    path: "/adminDashboard",
+    element: <RootLayout />,
+    children: [
+      {
+        path: "foa",
+        element: <FoaAdmin />,
+      },
+     
+    ],
+  },
+];
+
+export default AdminRoutes;

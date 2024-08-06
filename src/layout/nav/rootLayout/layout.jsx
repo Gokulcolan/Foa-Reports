@@ -1,12 +1,17 @@
-import React, {  useState } from "react";
-import { styled,  } from "@mui/material/styles";
+import React, { useState } from "react";
+import { styled } from "@mui/material/styles";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { UsermenuItems } from "../../../utils/constants/menuItems";
-import ListIcon from "@mui/icons-material/List";
+import {
+  AdminmenuItems,
+  UsermenuItems,
+} from "../../../utils/constants/menuItems";
 import MuiDrawer from "@mui/material/Drawer";
+import logo from "../../../assets/images/tvs-lucas-logo.png";
+import { Typography } from "@mui/material";
+import { handleSesssionStorage } from "../../../utils/helperFunctions";
 
 const drawerWidth = 280;
 
@@ -17,51 +22,33 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: "hidden",
+  backgroundColor: "#eef3f6",
 });
 
-const closedMixin = (theme) => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+const Drawer = styled(MuiDrawer)(({ theme }) => ({
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
-  ...(open && {
-    ...openedMixin(theme),
-    "& .MuiDrawer-paper": openedMixin(theme),
-  }),
-  ...(!open && {
-    ...closedMixin(theme),
-    "& .MuiDrawer-paper": closedMixin(theme),
-  }),
+  ...openedMixin(theme),
+  "& .MuiDrawer-paper": openedMixin(theme),
 }));
 
-function MultipleList({ menuItems, openDrawer }) {
+function MultipleList({ menuItems }) {
   const { name, path, id } = menuItems;
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
 
   const navigate = useNavigate();
   let location = useLocation();
+
   const handleClick = (e) => {
     e.preventDefault();
     navigate(path);
     setOpen((prev) => !prev);
   };
+
   return (
     <>
-      {/* && userRoleData[id]  */}
       {name && (
         <ListItemButton
           component={Link}
@@ -69,88 +56,96 @@ function MultipleList({ menuItems, openDrawer }) {
           className="multi-list"
           onClick={handleClick}
         >
-          <ListIcon sx={{ marginRight: "8px" }} />
+          {/* <ListIcon sx={{ marginRight: "8px" }} /> */}
           <ListItemText primary={name} onClick={() => navigate(path)} />
         </ListItemButton>
       )}
-      {/* <Collapse in={open} timeout="auto" unmountOnExit> */}
-      <List component="div" disablePadding>
+      <List component="div">
         {menuItems.isNested.map((nestedItem, index) => {
           const { name, path, icon, child, id } = nestedItem;
           let isActive =
             location.pathname === path || location.pathname === child;
           return (
-            <>
-              <div key={index}>
-                <ListItemButton
-                  component={Link}
-                  to={path}
-                  style={{
-                    backgroundColor: isActive ? "#00E785" : "",
-                    color: isActive ? "black" : "",
-                    margin: isActive && openDrawer ? "0px 18px 0px 0px" : "",
-                    // width:openDrawer?"" :"10px",
-                    borderRadius: isActive ? "10px" : "",
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                  key={`${index}-item`}
-                  className="nested-list"
-                  sx={{
-                    "&:hover": {
-                      color: "#00E785",
-                    },
-                  }}
-                >
-                  <span style={{ margin: "9px" }}>{icon}</span>
-                  <ListItemText
-                    primary={name}
-                    className={isActive ? "menuname" : "menunameIsActive"}
-                  />
-                </ListItemButton>
-              </div>
-            </>
+            <div key={index}>
+              <ListItemButton
+                component={Link}
+                to={path}
+                style={{
+                  backgroundColor: isActive ? "#0057ac" : "",
+                  color: isActive ? "white" : "",
+                  margin: isActive ? "0px 10px 0px 10px" : "",
+                  // width: "100%",
+                  borderRadius: isActive ? "10px" : "",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                key={`${index}-item`}
+                className="nested-list"
+                sx={{
+                  "&:hover": {
+                    color: "#00963f",
+                  },
+                }}
+              >
+                <span style={{ margin: "5px 10px" }}>{icon}</span>
+                <ListItemText
+                  primary={
+                    <Typography
+                      variant="body1"
+                      // sx={{ fontWeight: isActive ? "bold" : "" }}
+                      sx={{ fontWeight: "600" }}
+                    >
+                      {name}
+                    </Typography>
+                  }
+                  className={isActive ? "menuname" : "menunameIsActive"}
+                />
+              </ListItemButton>
+            </div>
           );
         })}
       </List>
-      {/* </Collapse> */}
     </>
   );
 }
 
-export const Layout = ({ openDrawer }) => {
+export const Layout = () => {
   const [layoutData, setLayoutData] = useState([]);
+  console.log(layoutData, "layoutData");
 
   React.useEffect(() => {
-    setLayoutData(UsermenuItems);
+    const UserRole = parseInt(handleSesssionStorage("get", "ur"), 10);
+    console.log(UserRole, "UserRole");
+    if (UserRole === 1) {
+      setLayoutData(UsermenuItems);
+    } else if (UserRole === 2) {
+      setLayoutData(AdminmenuItems);
+    } else {
+      setLayoutData([]); // Default empty state or handle as needed
+    }
   }, []);
 
   return (
-    <>
-      <div className="layoutcontainer">
-        {/* replace true with openDrawer props later */}
-        <Drawer
-          variant="permanent"
-          className="layoutlist"
-          open={openDrawer}
-          style={{ width: openDrawer ? "" : "20px" }}
-        >
-          <img src={""} className="logo" style={{ width: "100%" }} />
-          <List>
-            {layoutData.map((items, index) => {
-              return items.isNested ? (
-                <MultipleList
-                  menuItems={items}
-                  key={index}
-                  openDrawer={openDrawer}
-                />
-              ) : (
-                <></>
-              );
-            })}
-          </List>
-        </Drawer>
-      </div>
-    </>
+    <div
+      className="layoutcontainer"
+      style={{ backgroundColor: "blue !important" }}
+    >
+      <Drawer variant="permanent" className="layoutlist">
+        <img
+          src={logo}
+          className="logo"
+          style={{ width: "100%", margin: "20px 0px" }}
+        />
+        <List>
+          {layoutData.map((items, index) => {
+            return items.isNested ? (
+              <MultipleList menuItems={items} key={index} />
+            ) : (
+              <></>
+            );
+          })}
+        </List>
+      </Drawer>
+    </div>
   );
 };
