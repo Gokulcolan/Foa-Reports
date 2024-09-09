@@ -22,7 +22,7 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: "hidden",
-  backgroundColor: "#eef3f6",
+  backgroundColor: "white",
 });
 
 const Drawer = styled(MuiDrawer)(({ theme }) => ({
@@ -116,11 +116,13 @@ export const Layout = () => {
   React.useEffect(() => {
     const UserRole = parseInt(handleSesssionStorage("get", "ur"), 10);
     console.log(UserRole, "UserRole");
-    if (UserRole === 1) {
+    if (UserRole === 2) {
       setLayoutData(UsermenuItems);
-    } else if (UserRole === 2) {
+    } 
+    else if (UserRole === 3) {
       setLayoutData(AdminmenuItems);
-    } else {
+    } 
+    else {
       setLayoutData([]); // Default empty state or handle as needed
     }
   }, []);

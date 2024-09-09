@@ -1,0 +1,16 @@
+/* src/components/Loader.css */
+.global-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    z-index: 9999; /* Ensures loader is above all other elements */
+  }
+  

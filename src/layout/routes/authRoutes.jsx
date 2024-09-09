@@ -1,23 +1,22 @@
 import { Outlet } from "react-router";
-import ForgotPassword from "../../pages/Auth/ForgetPassword";
 import Login from "../../pages/Auth/Login";
+import ForgotPassword from "../../pages/Auth/ForgetPassword";
 
 const AuthRoutes = [
-    {
-      path: "/",
-      element: <Outlet />,
-      children: [
-        {
-          path: "/",
-          element: <Login />,
-        },
-        {
-          path: "/forgot-password",
-          element: <ForgotPassword />,
-        },
-       
-      ],
-    },
-  ];
+  {
+    path: "/viewerLogin",
+    element: <Outlet />,
+    children: [
+      {
+        path: "login", // Corrected path
+        element: <Login />,
+      },
+      {
+        path: "forgot-password", // Corrected path
+        element: <ForgotPassword />,
+      },
+    ],
+  },
+];
 
-  export default AuthRoutes;
+export default AuthRoutes;

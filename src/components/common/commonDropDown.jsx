@@ -1,40 +1,18 @@
 import React from 'react';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
-const CommonDropdown = ({
-  id,
-  label,
-  options,
-  sx,
-  customStyles,
-  defaultValue = "",
-  value,
-  required,
-  customChange,
-  onOpen 
-}) => {
-
+// CommonDropdown component
+const CommonDropdown = ({ label, options, value, customChange, sx }) => {
   const handleChange = (event) => {
-    if (customChange) {
-      customChange(event.target.value);
-    }
+    customChange(event.target.value);
   };
 
   return (
-    <FormControl fullWidth sx={sx} style={customStyles}>
-      <InputLabel id={`${id}-label`}>{label}</InputLabel>
-      <Select
-        labelId={`${id}-label`}
-        id={id}
-        name={id}
-        value={value}
-        onChange={handleChange}
-        label={label}
-        required={required}
-        onOpen={onOpen}
-      >
-        {options && options.map((option, index) => (
-          <MenuItem key={index} value={option.value}>
+    <FormControl sx={sx}>
+      <InputLabel>{label}</InputLabel>
+      <Select value={value} onChange={handleChange} label={label}>
+        {options?.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
@@ -44,3 +22,4 @@ const CommonDropdown = ({
 };
 
 export default CommonDropdown;
+

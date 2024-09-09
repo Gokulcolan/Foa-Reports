@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Box,
@@ -14,31 +14,49 @@ import * as Yup from "yup";
 import Logo from "../../../assets/images/tvs-lucas-logo.png";
 import { handleSesssionStorage } from "../../../utils/helperFunctions";
 import { useNavigate } from "react-router";
+import FormikTextField from "../../../components/common/commonTextField";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 
 const Login = () => {
   const navigate = useNavigate();
+  // const [selectedValue, setSelectedValue] = useState("");
+
+  // const roleOptions = [
+  //   { value: 10, label: "User" },
+  //   { value: 20, label: "Document Viewer" },
+  //   { value: 30, label: "Admin" },
+  // ];
+
   const formik = useFormik({
     initialValues: {
+      // role: "", // Added initial value for role
       Username: "",
       password: "",
       remember: false,
     },
     validationSchema: Yup.object({
+      // role: Yup.string().required("Role selection is required"), // Added validation for role
       Username: Yup.string().required("Username is required"),
       password: Yup.string().required("Password is required"),
     }),
     onSubmit: (values) => {
       console.log(values);
       if (values.Username === "Admin") {
-        handleSesssionStorage("add", "ur", 2);
+        handleSesssionStorage("add", "ur", 3);
         navigate("/adminDashboard/foa"); // Replace with the actual admin dashboard route
       } else {
-        handleSesssionStorage("add", "ur", 1);
+        handleSesssionStorage("add", "ur", 2);
         navigate("/userDashboard/foa");
       }
       // handle login logic here
     },
   });
+
+  const handleBack = () => {
+    handleSesssionStorage("add", "ur", 0);
+    navigate("/");
+  };
 
   return (
     <div className="bgLogin">
@@ -51,9 +69,33 @@ const Login = () => {
             alignItems: "center",
           }}
         >
+          <div
+            style={{
+              position: "absolute",
+              top: "20px", // Adjust the distance from the top
+              left: "20px", // Adjust the distance from the left
+              width: "100px", // Adjust the logo size
+              height: "auto", // Maintain aspect ratio
+            }}
+          >
+            <span
+              onClick={handleBack}
+              style={{
+                cursor: "pointer",
+                color: "white",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <ArrowCircleLeftIcon
+                sx={{ fontSize: "30px", color: "white", marginRight: "8px" }}
+              />
+              Back
+            </span>
+          </div>
           <Paper elevation={6} sx={{ padding: 4, borderRadius: 2 }}>
             <div style={{ textAlign: "center" }}>
-              <img src={Logo} alt="#" />
+              <img src={Logo} alt="TVS Lucas Logo" />
             </div>
             <br />
             <Box
@@ -62,40 +104,30 @@ const Login = () => {
               sx={{ mt: 1 }}
               onSubmit={formik.handleSubmit}
             >
-              <TextField
-                margin="normal"
+              {/* <FormikDropdown
+                formik={formik}
+                name="role"
+                label="Select Role"
+                options={roleOptions}
                 required
-                fullWidth
-                id="Username"
-                label="Username"
+              /> */}
+
+              <FormikTextField
+                formik={formik}
                 name="Username"
-                autoComplete="Username"
-                autoFocus
-                value={formik.values.Username}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={
-                  formik.touched.Username && Boolean(formik.errors.Username)
-                }
-                helperText={formik.touched.Username && formik.errors.Username}
-              />
-              <TextField
-                margin="normal"
+                label="Username"
+                type="text"
                 required
-                fullWidth
+              />
+
+              <FormikTextField
+                formik={formik}
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
-                autoComplete="current-password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={
-                  formik.touched.password && Boolean(formik.errors.password)
-                }
-                helperText={formik.touched.password && formik.errors.password}
+                required
               />
+
               <Box display="flex" justifyContent="space-between">
                 <FormControlLabel
                   control={
@@ -108,8 +140,11 @@ const Login = () => {
                   }
                   label="Remember me"
                 />
-                <Link className="forgotPassword">Forgot password?</Link>
+                <Link className="forgotPassword" href="#">
+                  Forgot password?
+                </Link>
               </Box>
+
               <Button
                 type="submit"
                 fullWidth

@@ -11,7 +11,6 @@ const AdminRoutes = [
         path: "foa",
         element: <FoaAdmin />,
       },
-     
     ],
   },
 ];
