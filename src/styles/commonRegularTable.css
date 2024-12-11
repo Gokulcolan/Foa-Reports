@@ -1,23 +1,62 @@
 /* CommonRegularTable.css */
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 0.5px solid #000000;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+th {
+  background-color: #97cbff;
+  /* text-align: left; */
+}
+
+input {
+  width: 100%;
+  padding: 10px 5px;
+  box-sizing: border-box;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Center logo for print */
+@media print {
+  .print-logo {
+    position: fixed; /* Fix the logo in place */
+    top: 20px; /* Adjust as necessary */
+    left: 50%;
+    transform: translateX(-50%); /* Center the logo */
+    width: 100px; /* Adjust the width as necessary */
+    z-index: 1000; /* Ensure it stays above other elements */
   }
-  
-  th, td {
-    border: 1px solid #000000;
-    padding: 15px;
-    text-align: center;
+
+  /* Optionally, you might want to hide non-essential UI elements during print */
+  body * {
+    visibility: hidden; /* Hide all elements initially */
   }
-  
-  th {
-    background-color: #97cbff;
-    /* text-align: left; */
+
+  .table-container,
+  .table-container * {
+    visibility: visible; /* Show table and logo */
   }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
+
+  .table-container {
+    position: absolute; /* Position the table correctly */
+    top: 80px; /* Adjust based on logo height */
+    left: 0;
+    right: 0;
   }
-  
+
+  /* You can also add page breaks if needed */
+  table {
+    page-break-after: auto; /* Allows pages to break properly */
+  }
+}

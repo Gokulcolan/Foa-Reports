@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import {
   Container,
   Box,
-  TextField,
   Button,
   Link,
   Checkbox,
   FormControlLabel,
   Paper,
+  IconButton,
+  InputAdornment,
+  TextField,
 } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -15,41 +17,44 @@ import Logo from "../../../assets/images/tvs-lucas-logo.png";
 import { handleSesssionStorage } from "../../../utils/helperFunctions";
 import { useNavigate } from "react-router";
 import FormikTextField from "../../../components/common/commonTextField";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const Login = () => {
   const navigate = useNavigate();
-  // const [selectedValue, setSelectedValue] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  // const roleOptions = [
-  //   { value: 10, label: "User" },
-  //   { value: 20, label: "Document Viewer" },
-  //   { value: 30, label: "Admin" },
-  // ];
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = (event) => event.preventDefault();
 
   const formik = useFormik({
     initialValues: {
-      // role: "", // Added initial value for role
       Username: "",
       password: "",
       remember: false,
     },
     validationSchema: Yup.object({
-      // role: Yup.string().required("Role selection is required"), // Added validation for role
       Username: Yup.string().required("Username is required"),
       password: Yup.string().required("Password is required"),
     }),
     onSubmit: (values) => {
-      console.log(values);
-      if (values.Username === "Admin") {
-        handleSesssionStorage("add", "ur", 3);
-        navigate("/adminDashboard/foa"); // Replace with the actual admin dashboard route
-      } else {
+      // Clear previous errors
+      formik.setErrors({});
+      if (values.Username === "MGRS" && values.password === "mgrs123") {
         handleSesssionStorage("add", "ur", 2);
         navigate("/userDashboard/foa");
+      } else {
+        // Set errors individually based on the issue
+        const errors = {};
+        if (values.Username !== "MGRS") {
+          errors.Username = "Invalid username";
+        }
+        if (values.password !== "mgrs123") {
+          errors.password = "Invalid password";
+        }
+        formik.setErrors(errors);
       }
-      // handle login logic here
     },
   });
 
@@ -104,28 +109,43 @@ const Login = () => {
               sx={{ mt: 1 }}
               onSubmit={formik.handleSubmit}
             >
-              {/* <FormikDropdown
-                formik={formik}
-                name="role"
-                label="Select Role"
-                options={roleOptions}
-                required
-              /> */}
-
               <FormikTextField
                 formik={formik}
                 name="Username"
                 label="Username"
                 type="text"
                 required
+                error={formik.touched.Username && Boolean(formik.errors.Username)}
+                helperText={formik.touched.Username && formik.errors.Username}
               />
 
-              <FormikTextField
-                formik={formik}
+              <TextField
                 name="password"
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
+                fullWidth
                 required
+                variant="outlined"
+                margin="normal"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.password && Boolean(formik.errors.password)}
+                helperText={formik.touched.password && formik.errors.password}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
 
               <Box display="flex" justifyContent="space-between">

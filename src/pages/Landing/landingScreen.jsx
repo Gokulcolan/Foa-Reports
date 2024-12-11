@@ -12,7 +12,7 @@ const LandingScreen = () => {
   };
 
   const handleOpenWorkersLandingPage = () => {
-    window.location.href = "http://192.168.54.190:8502"; // Opens in the same tab
+    window.location.href = "http://192.168.43.197:8501"; // Opens in the same tab
   };
 
   return (

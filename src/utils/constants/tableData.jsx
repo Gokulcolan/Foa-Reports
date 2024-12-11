@@ -19,7 +19,7 @@ export const headers = [
     { label: "", colSpan: 1 },
   ],
   [
-    { label: "NOTE", rowSpan: 2 },
+    { label: "Note", rowSpan: 2 },
     { label: "Shift change over", rowSpan: 2 },
     { label: "Product change over", rowSpan: 2 },
     { label: "Tool change over", rowSpan: 2 },
@@ -49,10 +49,10 @@ export const headers = [
     { label: "3", rowSpan: 3, id: "AO_3" },
     { label: "4", rowSpan: 3, id: "AO_4" },
     { label: "5", rowSpan: 3, id: "AO_5" },
-    { label: "8.00 Am", id: "Actual_Time_Obs_1", rowSpan: 1, colSpan: 1 }, // First row timings
-    { label: "10.00 Am", id: "Actual_Time_Obs_2", rowSpan: 1, colSpan: 1 },
-    { label: "12.00 Pm", id: "Actual_Time_Obs_3", rowSpan: 1, colSpan: 1 },
-    { label: "2.00 Pm", id: "Actual_Time_Obs_4", rowSpan: 1, colSpan: 1 },
+    { label: "8.00 Am", id: "8Am/4Pm/12Am", rowSpan: 1, colSpan: 1 }, // First row timings
+    { label: "10.00 Am", id: "10Am/6Pm/2Am", rowSpan: 1, colSpan: 1 },
+    { label: "12.00 Pm", id: "12Pm/8Pm/4Am", rowSpan: 1, colSpan: 1 },
+    { label: "2.00 Pm", id: "2Pm/10Pm/6Am", rowSpan: 1, colSpan: 1 },
   ],
   [
     { label: "4.00 Pm", rowSpan: 1, colSpan: 1 }, // Second row timings
@@ -68,84 +68,246 @@ export const headers = [
   ],
 ];
 
-
-
 export const footer = [
   [
     {
-      label: "Remarks - ",
+      label: "QualityAuditor -",
+      colSpan: 2,
+    },
+    {
+      label: "QualitySupervisor -",
+      colSpan: 2,
+    },
+    {
+      label: "QualityEngineer -",
+      colSpan: 4,
+    },
+    {
+      label: "",
       colSpan: 3,
     },
     {
-      label: "QualityAuditor -",
-      colSpan: 5,
+      label: "TeamLead - ",
+      colSpan: 3,
     },
-    {
-      label: "QualityVerifier -",
-      colSpan: 6,
-    },
-    // {
-    //   label: "Time -",
-    //   colSpan: 2,
-    // },
   ],
 ];
+
+export const barcodeHeader = [
+  [{ label: "Barcode Details", colSpan: 4, rowSpan: 1 }],
+  [
+    { label: "", id: "BarcodeName", colSpan: 1, rowSpan: 1 },
+    { label: "Apply your barcode sticker here.", colSpan: 1, rowSpan: 7 },
+    { label: "Scanning    ", colSpan: 1, rowSpan: 7 },
+    { label: "Barcode", id: "Barcode", rowSpan: 6 },
+  ],
+  [
+    { label: "Vendor Code", id: "Vendor_Code", colSpan: 1, rowSpan: 1 },
+  ],
+  [
+    { label: "Line", id: "Line", colSpan: 1, rowSpan: 1 },
+  ],
+  [
+    { label: "Customer Part No", id: "Customer_Part_No", colSpan: 1, rowSpan: 1 },
+    // { label: "Barcode", id: "Barcode", colSpan: 1, rowSpan: 3 },
+
+  ],
+  [
+    { label: "Date", id: "Date", colSpan: 1, rowSpan: 1 },
+  ],
+  [
+    { label: "Shift", id: "Shift", colSpan: 1, rowSpan: 1 },
+  ],
+]
+
+export const scrapingHeader = [
+  [{ label: "Scraping Check & Operator Details", colSpan: 8, rowSpan: 1 }],
+  [
+    { label: "Process Stage", id: "Process_Stage", rowSpan: 3 },
+    { label: "Operator CC No", id: "Operator_CC_No", rowSpan: 3 },
+    { label: "Name (Skilled Operator)", id: "Operator_Name", rowSpan: 3 },
+    { label: "Compliance", id: "Compliance", rowSpan: 3 },
+    { label: "8.00 Am", id: "time", colSpan: 1 }, // First row timings
+    { label: "10.00 Am", id: "time", colSpan: 1 },
+    { label: "12.00 Pm", id: "time", colSpan: 1 },
+    { label: "2.00 Pm", id: "time", colSpan: 1 },
+  ],
+  [
+    { label: "4.00 Pm", colSpan: 1 }, // Second row timings
+    { label: "6.00 Pm", colSpan: 1 },
+    { label: "8.00 Pm", colSpan: 1 },
+    { label: "10.00 Pm", colSpan: 1 },
+  ],
+  [
+    { label: "12.00 Am", colSpan: 1 }, // Third row timings
+    { label: "2.00 Am", colSpan: 1 },
+    { label: "4.00 Am", colSpan: 1 },
+    { label: "6.00 Am", colSpan: 1 },
+  ],
+
+]
+
+export const scrapingFooter = [
+  [
+    {
+      label: "QualityAuditor -",
+      colSpan: 1,
+    },
+    {
+      label: "QualitySupervisor -",
+      colSpan: 2,
+    },
+    {
+      label: "QualityEngineer-",
+      colSpan: 2,
+    },
+    {
+      label: "",
+      colSpan: 2,
+    },
+    {
+      label: "TeamLead - ",
+      colSpan: 2,
+    },
+  ],
+];
+
+// export const PokeYokeChecklistHeaders = [
+//   [
+//     {
+//       label: "",
+//       colSpan: 4, // This spans across the entire table
+
+//     },
+//     {
+//       label: "DATE:",
+//       colSpan: 2,
+//     },
+//     {
+//       label: "SHIFT:",
+//       colSpan: 1,
+//     },
+//   ],
+//   [
+//     {
+//       label: "Process No.",
+//       rowSpan: 2,
+//       colSpan: 1,
+//       id: "Process_Number"
+
+//     },
+//     {
+//       label: "Program No.",
+//       rowSpan: 2,
+//       colSpan: 1,
+//       id: "Program_Number"
+//     },
+//     {
+//       label: "Process",
+//       rowSpan: 2,
+//       colSpan: 1,
+//       id: "Process"
+
+//     },
+//     {
+//       label: "Product Characteristics",
+//       rowSpan: 2,
+//       colSpan: 1,
+//       id: "Product_Characteristics"
+
+//     },
+//     {
+//       label: "Status",
+//       colSpan: 2,  // "OK" and "NOT OK" will be under this header
+//     },
+//     {
+//       label: "Remarks",
+//       id: "Remarks",
+//       colSpan: 1,
+//       rowSpan: 2,
+//     },
+//   ],
+//   [
+//     {
+//       label: "OK",
+//       id: "Ok",
+//       colSpan: 1,
+//       rowSpan: 1,
+//     },
+//     {
+//       label: "NOT OK",
+//       id: "Not_Ok",
+//       colSpan: 1,
+//       rowSpan: 1,
+//     }
+//   ]
+// ];
 
 export const PokeYokeChecklistHeaders = [
   [
     {
-      label: "POKA YOKE CHECK LIST - MGRS M70 -PSSF (YED) MAIN ASSEMBLY NEW LINE",
+      label: "",
       colSpan: 4, // This spans across the entire table
     },
     {
       label: "DATE:",
-      colSpan: 2
+      colSpan: 2,
     },
     {
       label: "SHIFT:",
-      colSpan: 1
+      colSpan: 1,
     },
   ],
   [
-
     {
-      label: "PROCESS NO.",
-      rowSpan: 2,
+      label: "Process No.",
       id: "Process_Number"
     },
     {
       label: "Program No.",
-      rowSpan: 2,
-      id: "Program_no",
+      id: "Program_Number"
     },
     {
-      label: "PROCESS",
-      rowSpan: 2,
-      id: "Process_Name",
+      label: "Process",
+      id: "Process"
     },
     {
-      label: "PRODUCT CHARACTERISTICS",
-      rowSpan: 2,
-      id: "Product_Characteristics",
+      label: "Product Characteristics",
+      id: "Product_Characteristics"
     },
     {
-      label: "STATUS",
-      colSpan: 2,  // "OK" and "NOT OK" will be under this header
+      label: "Ok",
+      id: "Ok",
     },
     {
-      label: "REMARKS",
-      rowSpan: 2
+      label: "Not Ok",
+      id: "Not_Ok",
+    },
+    {
+      label: "Remarks",
+      id: "Remarks",
+
     },
   ],
-  [
-    {
-      label: "OK",
-      id: "ok"
-    },
-    {
-      label: "NOT OK",
-      id: "Not_ok"
-    }
-  ]
 ];
 
+
+
+export const PokeYokeFooter = [
+  [
+    {
+      label: "Part No Variety -",
+      colSpan: 3,
+    },
+    {
+      label: "Quality Auditor -",
+      colSpan: 1,
+    },
+
+    {
+      label: "Quality Engineer -",
+      colSpan: 3,
+    },
+
+  ],
+];

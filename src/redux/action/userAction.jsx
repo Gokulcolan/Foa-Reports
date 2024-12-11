@@ -1,6 +1,6 @@
 // redux/actions/userActions.js
 import { Apiservice } from "../api/Apiservice";
-import { foaDataReducer, partNumberReducer, setGlobalLoader } from "../slice/userSlice";
+import { barCodeDataReducer, foaDataReducer, FoapartNumberReducer, PyDataReducer, PyPartNumberReducer, setGlobalLoader } from "../slice/userSlice";
 
 // let loadingCounter = 0;
 // console.log(loadingCounter, "loadingCounter")
@@ -40,10 +40,23 @@ export function apiHelper(apiReducer, method, apiURL, data = "", Toastmessage = 
   };
 }
 
-export function partNumberApi(payload) {
-  return apiHelper(partNumberReducer, "POST", "/get_foa_varieties", payload);
+export function FoapartNumberApi(payload) {
+  return apiHelper(FoapartNumberReducer, "POST", "/get_foa_varieties", payload);
 }
 
 export function foaDataApi(payload) {
   return apiHelper(foaDataReducer, "POST", "/get_foa_data", payload);
 }
+
+export function barCodeDataApi(payload) {
+  return apiHelper(barCodeDataReducer, "POST", "/get_foa_bar_data", payload);
+}
+
+export function PyPartNumberApi(payload) {
+  return apiHelper(PyPartNumberReducer, "POST", "/get_py_varieties", payload);
+}
+
+export function PyDataApi(payload) {
+  return apiHelper(PyDataReducer, "POST", "/get_py_data", payload);
+}
+

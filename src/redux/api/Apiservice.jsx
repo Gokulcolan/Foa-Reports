@@ -4,7 +4,7 @@ import axios from "axios";
 
 console.log(ADMIN_BASE_URL, "ADMIN_BASE_URL");
 export const Apiservice = async (method, url, body, params) => {
-  if (window.navigator.onLine) {
+  if (window.navigator.onLine || !window.navigator.onLine) {
     try {
       const response = await axios({
         method: method,
@@ -31,7 +31,6 @@ export const Apiservice = async (method, url, body, params) => {
       }
     } catch (error) {
       console.log("An error occurred:", error);
-
       if (error.message === "Network Error") {
         // showToast("Network Error", "error");
         return Promise.reject();

@@ -34,15 +34,3 @@ export const UsermenuItems = [
     ],
   },
 ];
-
-export const AdminmenuItems = [
-  {
-    isNested: [
-      {
-        path: "/adminDashboard/foa",
-        name: "Master Admin",
-        icon: <ContactPageIcon />,
-      },
-    ],
-  },
-];
