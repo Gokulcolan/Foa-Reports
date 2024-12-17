@@ -24,7 +24,8 @@ const ComponentHeadBar = ({ mainHeading,
             textAlign: "center",
             textTransform: "uppercase",
             color: "rgb(0, 87, 172)",
-            fontSize: "32px",
+            fontSize: "30px",
+            margin:"0px"
           }}
         >
           {mainHeading}

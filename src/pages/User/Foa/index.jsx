@@ -33,11 +33,9 @@ const Foa = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  // console.log(barcodeHeadersState, "barcodeHeadersState")
   const currentPath = location.pathname;
   const { foaDataDetail, FoaPartNumberDetail, barCodeDataDetail } = useSelector(userSelector);
 
-  console.log(barCodeDataDetail, "barCodeDataDetail")
 
   const currentMenuItem = UsermenuItems[0].isNested.find(
     (item) => item.path === currentPath
@@ -100,7 +98,6 @@ const Foa = () => {
     };
 
     // Log to check if the function is called
-    console.log("Fetching data with payload:", payload);
     dispatch(foaDataApi(payload))
     dispatch(barCodeDataApi(payload))
   };
@@ -200,7 +197,6 @@ const Foa = () => {
 
       const barcodeUpdatedHeaders = barcodeHeader.map((row, rowIndex) => {
         return row.map((col, colIndex) => {
-          console.log(colIndex, rowIndex, "colIndex")
           // Updating labels based on row and column index
           if (rowIndex === 1 && colIndex === 0) {
             return { ...col, label: BarcodeName };
@@ -275,7 +271,6 @@ const Foa = () => {
     const input = tableRef.current;
 
     if (!input) {
-      console.error("Table reference not found!");
       setLoadingPDF(false);
       return;
     }

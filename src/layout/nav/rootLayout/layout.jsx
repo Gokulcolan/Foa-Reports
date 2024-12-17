@@ -19,7 +19,8 @@ const openedMixin = (theme) => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: "hidden",
-  backgroundColor: "white",
+  backgroundColor: "rgb(0, 87, 172)",
+  
 });
 
 const closedMixin = (theme) => ({
@@ -80,9 +81,9 @@ function MultipleList({ menuItems }) {
                 component={Link}
                 to={path}
                 style={{
-                  backgroundColor: isActive ? "#0057ac" : "",
-                  color: isActive ? "white" : "",
-                  margin: isActive ? "0px 10px" : "",
+                  backgroundColor: isActive ? "white" : "",
+                  color: isActive ? "black" : "white",
+                  margin: isActive ? "10px 10px" : "5px 5px",
                   borderRadius: isActive ? "10px" : "",
                   display: "flex",
                   justifyContent: "center",
@@ -127,7 +128,8 @@ export const Layout = ({ open }) => {
         <img
           src={logo}
           className="logo"
-          style={{ width: "100%", margin: "20px 0px" }}
+          // style={{ width: "100%", margin: "20px 0px" }}
+          style={{ width: "100%", padding: "10px 0px", backgroundColor: "white" }}
           alt="Company Logo"
         />
         <List>
@@ -135,6 +137,12 @@ export const Layout = ({ open }) => {
             <MultipleList menuItems={items} key={index} />
           ))}
         </List>
+        {/* Copyright Message at the Bottom */}
+        <Box sx={{ position: "absolute", bottom: 0, width: "100%", padding: "10px 0px", color: "orange", textAlign: "center", fontSize: "10px", }}>
+          <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+            &copy; {new Date().getFullYear()} PED-AI Team. All Rights Reserved.
+          </Typography>
+        </Box>
       </Drawer>
 
       {/* Content Section */}

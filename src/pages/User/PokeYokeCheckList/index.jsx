@@ -133,7 +133,6 @@ const PokeYokeCheckList = () => {
       variety: selectedPartNumber,
     };
     // Log to check if the function is called
-    console.log("Fetching data with payload:", payload);
     dispatch(PyDataApi(payload))
   };
 
@@ -170,7 +169,6 @@ const PokeYokeCheckList = () => {
     const input = tableRef.current;
 
     if (!input) {
-      console.error("Table reference not found!");
       setLoadingPDF(false);
       return;
     }
@@ -278,7 +276,6 @@ const PokeYokeCheckList = () => {
       URL.revokeObjectURL(blobUrl);
 
     } catch (error) {
-      console.error("Error generating PDF:", error);
     } finally {
       setLoadingPDF(false);
     }

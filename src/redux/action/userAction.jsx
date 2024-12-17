@@ -1,6 +1,6 @@
 // redux/actions/userActions.js
 import { Apiservice } from "../api/Apiservice";
-import { barCodeDataReducer, foaDataReducer, FoapartNumberReducer, PyDataReducer, PyPartNumberReducer, setGlobalLoader } from "../slice/userSlice";
+import { barCodeDataReducer, DaDataReducer, DaPartNumberReducer, foaDataReducer, FoapartNumberReducer, PaDataReducer, PaPartNumberReducer, PyDataReducer, PyPartNumberReducer, SaDataReducer, SaPartNumberReducer, setGlobalLoader } from "../slice/userSlice";
 
 // let loadingCounter = 0;
 // console.log(loadingCounter, "loadingCounter")
@@ -60,3 +60,26 @@ export function PyDataApi(payload) {
   return apiHelper(PyDataReducer, "POST", "/get_py_data", payload);
 }
 
+export function PaPartNumberApi(payload) {
+  return apiHelper(PaPartNumberReducer, "POST", "/get_pa_varieties", payload);
+}
+
+export function PaDataApi(payload) {
+  return apiHelper(PaDataReducer, "POST", "/get_pa_data", payload);
+}
+
+export function DaPartNumberApi(payload) {
+  return apiHelper(DaPartNumberReducer, "POST", "/get_da_varieties", payload);
+}
+
+export function DaDataApi(payload) {
+  return apiHelper(DaDataReducer, "POST", "/get_da_data", payload);
+}
+
+export function SaPartNumberApi(payload) {
+  return apiHelper(SaPartNumberReducer, "POST", "/get_sa_varieties", payload);
+}
+
+export function SaDataApi(payload) {
+  return apiHelper(SaDataReducer, "POST", "/get_sa_data", payload);
+}

@@ -4,7 +4,7 @@ import Foa from "../../pages/User/Foa";
 import PokeYokeCheckList from "../../pages/User/PokeYokeCheckList";
 import DockAuditReport from "../../pages/User/DockAuditReport";
 import StripAuditReport from "../../pages/User/StripAuditReport";
-import Qcpc from "../../pages/User/Qcpc";
+import ProcessApprovalReport from "../../pages/User/ProcessApproval";
 
 // const Foa = React.lazy(() => import("../../pages/User/Foa/index"));
 // const BarcodeDetails = React.lazy(() => import("../../pages/User/BarcodeDetails/index"));
@@ -24,21 +24,13 @@ const UserRoutes = [
         path: "foa",
         element: <Foa />,
       },
-      // {
-      //   path: "BarcodeDetails",
-      //   element: <BarcodeDetails />,
-      // },
-      // {
-      //   path: "Scraping",
-      //   element: <Scraping />,
-      // },
-      // {
-      //   path: "OperatorDetails",
-      //   element: <OperatorDetails />,
-      // },
       {
         path: "PokeYokeCheckList",
         element: <PokeYokeCheckList />,
+      },
+      {
+        path: "ProcessApprovalReport",
+        element: <ProcessApprovalReport />,
       },
       {
         path: "DockAuditReport",
@@ -47,11 +39,7 @@ const UserRoutes = [
       {
         path: "StripAuditReport",
         element: <StripAuditReport />,
-      },
-      {
-        path: "qcpc",
-        element: <Qcpc />,
-      },
+      }
     ],
   },
 ];

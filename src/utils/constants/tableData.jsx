@@ -291,8 +291,6 @@ export const PokeYokeChecklistHeaders = [
   ],
 ];
 
-
-
 export const PokeYokeFooter = [
   [
     {
@@ -307,6 +305,141 @@ export const PokeYokeFooter = [
     {
       label: "Quality Engineer -",
       colSpan: 3,
+    },
+
+  ],
+];
+
+export const ProcessApprovalReportHeader = [
+  [
+    { label: "\u00A0", colSpan: 8 },
+    { label: "Date:", colSpan: 3 },
+  ],
+  [
+    { label: "\u00A0", colSpan: 8 },
+    { label: "Shift:", colSpan: 3 },
+  ],
+  [
+    { label: "S.No", colSpan: 1, rowSpan: 2, id: "SL_No" },
+    { label: "Program No/Product Name", colSpan: 1, rowSpan: 2, id: "Program_no_Product_name" },
+    { label: "Process Name/Opn Description", colSpan: 1, rowSpan: 2, id: "Process_Name_Opn_Description" },
+    { label: "Product characteristics", colSpan: 1, rowSpan: 2, id: "Product_Characteristic" },
+    { label: "Specification/Tolerance", colSpan: 1, rowSpan: 2, id: "Specification_Tolerance" },
+    { label: "Evaluation Measurement Method", colSpan: 1, rowSpan: 2, id: "Evaluation_Measurement_method" },
+    { label: "Machine Spec Set Value", colSpan: 2, rowSpan: 1 },
+    { label: "Ok Part Actual", colSpan: 2, rowSpan: 1 },
+    { label: "Master Bad Sample Actual", colSpan: 1, rowSpan: 2, id: "Master_bad_sample_Actual" },
+  ],
+  [
+    { label: "Min", colSpan: 1, id: "Machine_spec_set_value_Max" },
+    { label: "Max", colSpan: 1, id: "Machine_spec_set_value_Min" },
+    { label: "1", colSpan: 1, id: "Ok_Part_Actual_1" },
+    { label: "2", colSpan: 1, id: "Ok_Part_Actual_2" }
+  ]
+]
+
+export const ProcessApprovalFooter = [
+  [
+    {
+      label: "Form No -",
+      colSpan: 2,
+    },
+    {
+      label: "Part No Variety -",
+      colSpan: 2,
+
+    },
+
+    {
+      label: "Quality Auditor -",
+      colSpan: 3,
+
+    },
+
+    {
+      label: "Quality Engineer -",
+      colSpan: 4,
+
+    },
+
+  ],
+];
+
+export const DockAuditReportHeader = [
+  [
+    { label: "\u00A0", colSpan: 7 },
+  ],
+  [
+    { label: "\u00A0", colSpan: 5 },
+    { label: "Date:", colSpan: 2 },
+  ],
+  [
+    { label: "\u00A0", colSpan: 5 },
+    { label: "Shift:", colSpan: 2 },
+  ],
+  [
+    { label: "Description Performance", colSpan: 1, id: "DESCRIPTION_PERFORMANCE" },
+    { label: "Specification", colSpan: 1, id: "SPECIFICATION" },
+    { label: "1", colSpan: 1, id: "A_1" },
+    { label: "2", colSpan: 1, id: "A_2" },
+    { label: "3", colSpan: 1, id: "A_3" },
+    { label: "4", colSpan: 1, id: "A_4" },
+    { label: "5", colSpan: 1, id: "A_5" },
+  ],
+]
+
+export const DockAuditReportFooter = [
+  [
+    {
+      label: "Form No -",
+      colSpan: 1,
+    },
+    {
+      label: "Quality Auditor -",
+      colSpan: 3,
+    },
+    {
+      label: "Quality Verifier -",
+      colSpan: 3,
+    },
+  ],
+];
+
+export const StripAuditReportHeader = [
+  [
+    { label: "\u00A0", colSpan: 3 },
+  ],
+  [
+    { label: "\u00A0", colSpan: 2 },
+    { label: "Date:", colSpan: 1 },
+  ],
+  [
+    { label: "\u00A0", colSpan: 2 },
+    { label: "Shift:", colSpan: 1 },
+  ],
+  [
+    { label: "Description Performance", colSpan: 1, id: "DESCRIPTION" },
+    { label: "Specification", colSpan: 1, id: "SPECIFICATION" },
+    { label: "Actual", colSpan: 1, id: "ACTUAL" },
+  ],
+]
+
+export const StripAuditReportFooter = [
+  [
+    
+    {
+      label: "Form No -",
+      colSpan: 1,
+    },
+
+    {
+      label: "Quality Auditor -",
+      colSpan: 1,
+    },
+
+    {
+      label: "Quality Verifier -",
+      colSpan: 1,
     },
 
   ],
